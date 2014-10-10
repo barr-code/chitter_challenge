@@ -50,3 +50,9 @@ end
 		erb :new_session
 	end
 
+	delete '/sessions' do 
+		flash[:notice] = "Bye bye!"
+		session[:user_id] = nil
+		redirect to('/')
+	end
+

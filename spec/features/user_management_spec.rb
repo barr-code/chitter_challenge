@@ -35,7 +35,7 @@ feature "User registers for Chitter" do
 	end
 end
 
-feature "User signs in" do
+feature "User signs in and out" do
 	before(:each) do
 		User.create(:email => 'vika177@gmail.com', :username => 'barrcode', :password => 'lolcatz',
 			:password_confirmation => 'lolcatz') 
@@ -51,6 +51,17 @@ feature "User signs in" do
 	scenario "signing in" do
 		sign_in('vika177@gmail.com', 'lolcatz')
 		expect(page).to have_content ('Welcome, barrcode!')
+	end
+
+	scenario "signing in with the wrong password" do
+		sign_in('vika177@gmail.com', 'lolnope')
+		expect(page).to have_content "The password and/or e-mail address you entered is incorrect."
+	end
+
+	scenario "signing out" do 
+		sign_in('vika177@gmail.com', 'lolcatz')
+		click_button "Sign out"
+		expect(page).to have_content "Bye bye!"
 	end
 end
 
