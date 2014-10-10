@@ -12,6 +12,12 @@ end
 
 feature "User registers for Chitter" do 
 	scenario "before having an account" do 
-	expect{register}.to change(User, :count).by 1
+		expect{register}.to change(User, :count).by 1
+	end
+
+	scenario "signed up and signed in" do 
+		register 
+		expect(page).to have_content("Welcome, barrcode!")
+		expect(User.first.email).to eq("vika177@gmail.com")
 	end
 end
