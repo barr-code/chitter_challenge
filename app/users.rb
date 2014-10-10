@@ -5,7 +5,7 @@ class User
 	include DataMapper::Resource
 
 	property :id, Serial
-	property :email, String
+	property :email, String, :unique => true, :message => "There is already a Chitter account registered to this email address."
 	property :username, String
 	property :password_digest, Text
 
@@ -19,4 +19,12 @@ class User
 		self.password_digest = BCrypt::Password.create(password)
 	end
 
+	def self.authenticate(email, password)
+		user = first(:email => email)
+		if user && BCrypt::Password.new(user.password_digest) == password
+			user
+		else
+			nil
+		end
+	end
 end

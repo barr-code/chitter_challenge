@@ -16,6 +16,18 @@ end
 	    erb :index
 	end
 
+	post '/' do
+		email, password = params[:email], params[:password]
+		user = User.authenticate(email, password)
+		if user
+			session[:user_id] = user.id
+			redirect to('/')
+		else
+			flash[:errors] = ["The password and/or e-mail address you entered is incorrect."]
+			erb :new_session
+		end
+	end
+
 	get '/register' do
 	  	erb :register
 	end
@@ -32,5 +44,9 @@ end
 			flash.now[:errors] = @user.errors.full_messages
 			erb :register
 		end
+	end
+
+	get '/sessions/new' do 
+		erb :new_session
 	end
 
