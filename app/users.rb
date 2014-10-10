@@ -9,7 +9,10 @@ class User
 	property :username, String
 	property :password_digest, Text
 
+	attr_reader :password
 	attr_accessor :password_confirmation
+
+	validates_confirmation_of :password, :message => "The passwords you entered don't match. Try again."
 
 	def password=(password)
 		@password = password

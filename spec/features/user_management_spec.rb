@@ -20,4 +20,10 @@ feature "User registers for Chitter" do
 		expect(page).to have_content("Welcome, barrcode!")
 		expect(User.first.email).to eq("vika177@gmail.com")
 	end
+
+	scenario "signing in with password confirmation that doesn't match" do 
+		expect {register('test@test.com', 'testhandle', 'lolcatz', 'lolcat')}.to change(User, :count).by 0
+		expect(current_path).to eq '/register'
+		expect(page).to have_content "The passwords you entered don't match. Try again."
+	end
 end
