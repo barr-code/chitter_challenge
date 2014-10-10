@@ -1,10 +1,20 @@
-require 'sinatra/base'
+require 'sinatra'
+require 'data_mapper'
+require_relative 'users.rb'
+require_relative 'datamapper_setup'
 
-class Chitter < Sinatra::Base
-  get '/' do
-    'Hello Chitter!'
-  end
 
-  # start the server if ruby file executed directly
-  run! if app_file == $0
-end
+	get '/' do
+	    'Hello Chitter!'
+	end
+
+	get '/register' do
+	  	erb :register
+	end
+
+	post '/register' do
+		@user = User.create(email: params[:email],
+			username: params[:username], password: params[:password],
+			password_confirmation: params[:password_confirmation])
+	end
+
