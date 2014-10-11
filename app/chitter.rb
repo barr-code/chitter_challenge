@@ -2,6 +2,8 @@ require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
 require_relative 'users.rb'
+require_relative 'cheeps.rb'
+require_relative 'tags.rb'
 require_relative 'datamapper_setup'
 
 enable :sessions
@@ -13,6 +15,7 @@ def current_user
 end
 
 	get '/' do
+		@cheeps = Cheep.all
 	    erb :index
 	end
 
@@ -26,6 +29,13 @@ end
 			flash[:errors] = ["The password and/or e-mail address you entered is incorrect."]
 			erb :new_session
 		end
+	end
+
+	post '/cheep' do
+		content = params[:cheep]
+		tags = params[:tags].split(' ').map {|tag| Tag.first_or_create(:text => tag)}
+		Cheep.create(:content => content, :tags => tags)
+		redirect to('/')
 	end
 
 	get '/register' do
