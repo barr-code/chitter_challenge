@@ -9,6 +9,13 @@ def register(email = "vika177@gmail.com", username = "barrcode", password = "lol
 	click_button "Join Chitter"
 end
 
+def sign_in(email, password)
+		visit '/sessions/new'
+		fill_in :email, with: email
+		fill_in :password, with: password
+		click_on 'Sign In'
+end
+
 
 feature "User registers for Chitter" do 
 	scenario "before having an account" do 
@@ -41,13 +48,6 @@ feature "User signs in and out" do
 			:password_confirmation => 'lolcatz') 
 	end
 
-	def sign_in(email, password)
-		visit '/sessions/new'
-		fill_in :email, with: email
-		fill_in :password, with: password
-		click_on 'Sign In'
-	end
-
 	scenario "signing in" do
 		sign_in('vika177@gmail.com', 'lolcatz')
 		expect(page).to have_content ('Welcome, barrcode!')
@@ -65,4 +65,20 @@ feature "User signs in and out" do
 	end
 end
 
+feature "posting cheeps" do 
+	before(:each) do 
+		User.create(:email => 'vika177@gmail.com', :username => 'barrcode', :password => 'lolcatz', :password_confirmation => 'lolcatz')
+	end
 
+	scenario "while signed out" do 
+		visit '/'
+		expect(page).to have_content "Sign up to start Cheeping!"
+	end
+
+	scenario "while signed in" do 
+		sign_in('vika177@gmail.com', 'lolcatz')
+		expect(current_path).to eq '/'
+		expect(page).to have_content "Compose a new Cheep:"
+	end
+
+end

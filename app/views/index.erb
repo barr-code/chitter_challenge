@@ -1,8 +1,14 @@
 <% if current_user %>
 	<h2>Welcome, <%= current_user.username %>!</h2>
 
+	<form action="/cheep" method="post">
+	Compose a new Cheep: <input type="text" name="cheep">
+	<input type="submit" value="Cheep!">
+	</form>
+
 <% else %>
-	Welcome to Chitter!
+
+	<h1>Welcome to Chitter!</h1>
 
 <% end %>
 
