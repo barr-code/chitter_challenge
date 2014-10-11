@@ -1,8 +1,25 @@
 <% if current_user %>
 	<h2>Welcome, <%= current_user.username %>!</h2>
 
-<% else %>
-	Welcome to Chitter!
+	<div id="new-cheep">
+	<form action="/cheep" method="post">
+		Compose a new Cheep: <input type="text" name="cheep">
+		<input type="text" name="tags">
+		<input type="submit" value="Cheep!">
+	</form>
+	</div>
 
+<% else %>
+
+	<h1>Welcome to Chitter!</h1>
+
+<% end %>
+
+<% if @cheeps %>
+	<% @cheeps.each do |cheep| %>
+	<ul>
+		<li><%= cheep.content %><%= cheep.tags %></li>
+	</ul>
+	<% end %>
 <% end %>
 
