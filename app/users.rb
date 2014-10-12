@@ -8,6 +8,7 @@ class User
 	property :email, String, :unique => true, :message => "There is already a Chitter account registered to this email address."
 	property :username, String
 	property :password_digest, Text
+	has n, :cheeps, :through => Resource
 
 	attr_reader :password
 	attr_accessor :password_confirmation

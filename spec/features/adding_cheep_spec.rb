@@ -9,8 +9,8 @@ end
 
 def new_cheep(cheep, tags = [])
 		within('#new-cheep') do
-			fill_in 'cheep', :with => cheep
-			fill_in 'tags', :with => tags.join(' ')
+			fill_in :cheep, :with => cheep
+			fill_in :tags, :with => tags.join(' ')
 			click_button 'Cheep!'
 		end
 end
