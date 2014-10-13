@@ -33,8 +33,9 @@ end
 
 	post '/cheep' do
 		content = params[:cheep]
-		tags = params[:tags].split(' ').map {|tag| Tag.first_or_create(:content => tag)}
-		Cheep.create(:content => content, :tags => tags)
+		user = current_user
+		tags = params[:tags].split(' ').map {|tag| Tag.first_or_create(:text => tag)}
+		Cheep.create(:content => content, :tags => tags, :user => user)
 		redirect to('/')
 	end
 

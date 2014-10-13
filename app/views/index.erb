@@ -16,10 +16,11 @@
 <% end %>
 
 <% if @cheeps %>
-	<% @cheeps.each do |cheep| %>
-	<ul>
-		<li><%= cheep.user %><%= cheep.content %><%= cheep.tags %></li>
-	</ul>
+	<% @cheeps.reverse.each do |cheep| %>
+	<section class="cheeps">
+		<p><%= cheep.user.username %> says:</p>
+		<p><%= cheep.content %></p>
+	</section>
 	<% end %>
 <% end %>
 

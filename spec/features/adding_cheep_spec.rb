@@ -31,5 +31,7 @@ feature "user adds a new cheep" do
 		new_cheep('Hello, world!')
 		expect(current_path).to eq '/'
 		expect(page).to have_content 'Hello, world!'
+		expect(Cheep.count).to eq 1
+		expect(Cheep.first.user.username).to eq 'barrcode'
 	end
 end
