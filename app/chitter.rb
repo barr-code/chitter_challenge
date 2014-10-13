@@ -7,7 +7,7 @@ require_relative 'tags.rb'
 require_relative 'datamapper_setup'
 
 enable :sessions
-set :session_secret, 'super secret'
+set :session_secret, 'secret'
 use Rack::Flash
 
 def current_user
@@ -33,8 +33,9 @@ end
 
 	post '/cheep' do
 		content = params[:cheep]
+		user = current_user
 		tags = params[:tags].split(' ').map {|tag| Tag.first_or_create(:text => tag)}
-		Cheep.create(:content => content, :tags => tags)
+		Cheep.create(:content => content, :tags => tags, :user => user)
 		redirect to('/')
 	end
 

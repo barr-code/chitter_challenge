@@ -9,8 +9,8 @@ end
 
 def new_cheep(cheep, tags = [])
 		within('#new-cheep') do
-			fill_in 'cheep', :with => cheep
-			fill_in 'tags', :with => tags.join(' ')
+			fill_in :cheep, :with => cheep
+			fill_in :tags, :with => tags.join(' ')
 			click_button 'Cheep!'
 		end
 end
@@ -31,5 +31,7 @@ feature "user adds a new cheep" do
 		new_cheep('Hello, world!')
 		expect(current_path).to eq '/'
 		expect(page).to have_content 'Hello, world!'
+		expect(Cheep.count).to eq 1
+		expect(Cheep.first.user.username).to eq 'barrcode'
 	end
 end
