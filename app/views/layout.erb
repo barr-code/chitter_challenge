@@ -1,3 +1,12 @@
+<head>
+
+	<link rel="stylesheet" type="text/css" href="/coolpage.css">
+</head>
+
+<header>
+	<h1>Chitter</h1>
+</header>
+
 <%= yield %>
 
 <% if current_user %>
@@ -14,5 +23,7 @@
 <% end %>
 
 <% if !current_user %>
-	<a href="/register">Sign up to start Cheeping!</a>
+	<a href="/register">Sign up to start Cheeping!</a><br>
+	<a href="/sessions/new">Already a user? Sign in!</a>
 <% end %>
+

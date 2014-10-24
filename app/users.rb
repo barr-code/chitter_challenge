@@ -5,8 +5,9 @@ class User
 	include DataMapper::Resource
 
 	property :id, Serial
+	property :name, String
 	property :email, String, :unique => true, :message => "There is already a Chitter account registered to this email address."
-	property :username, String
+	property :username, String, :unique => true, :message => "This username is taken. Try another name."
 	property :password_digest, Text
 	has n, :cheeps, :through => Resource
 
