@@ -10,7 +10,6 @@ end
 def new_cheep(cheep, tags = [])
 		within('#new-cheep') do
 			fill_in :cheep, :with => cheep
-			fill_in :tags, :with => tags.join(' ')
 			click_button 'Cheep!'
 		end
 end
@@ -26,7 +25,7 @@ feature "user adds a new cheep" do
 		expect(Cheep.count).to eq 0
 	end
 
-	scenario "adding a cheep" do 
+	scenario "adding a cheep" do
 		sign_in('vika177@gmail.com', 'lolcatz')
 		new_cheep('Hello, world!')
 		expect(current_path).to eq '/'

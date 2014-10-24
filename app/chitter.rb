@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
+require 'dm-timestamps'
 require_relative 'users.rb'
 require_relative 'cheeps.rb'
 require_relative 'tags.rb'
@@ -8,6 +9,7 @@ require_relative 'datamapper_setup'
 
 enable :sessions
 set :session_secret, 'secret'
+set :public_folder, Proc.new {File.join(root, "..", "public")}
 use Rack::Flash
 
 def current_user
@@ -34,8 +36,7 @@ end
 	post '/cheep' do
 		content = params[:cheep]
 		user = current_user
-		tags = params[:tags].split(' ').map {|tag| Tag.first_or_create(:text => tag)}
-		Cheep.create(:content => content, :tags => tags, :user => user)
+		Cheep.create(:content => content, :user => user)
 		redirect to('/')
 	end
 
@@ -44,7 +45,7 @@ end
 	end
 
 	post '/register' do
-		@user = User.create(email: params[:email],
+		@user = User.create(name: params[:name], email: params[:email],
 			username: params[:username], password: params[:password],
 			password_confirmation: params[:password_confirmation])
 
