@@ -47,7 +47,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-    config.before(:suite) do
+  config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end

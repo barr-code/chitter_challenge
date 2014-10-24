@@ -39,15 +39,29 @@ feature "User registers for Chitter" do
 	scenario "trying to sign up with an already registered email address" do
 		register
 		expect {register}.to change(User, :count).by 0
-		expect(page).to have_content("There is already a Chitter account registered to this email address.")
+		expect(page).to have_content("Email is already taken")
 
 	end
 
 	scenario "trying to sign up with an already registered username" do
 		register
 		expect { register }.to change(User, :count).by 0
-		expect(page).to have_content("This username is taken. Try another name.")
+		expect(page).to have_content("Username is already taken")
 	end
+
+	scenario "trying to sign up with no credentials" do
+		visit '/register'
+		fill_in :name, :with => " "
+		fill_in :email, :with => " "
+		fill_in :username, :with => " "
+		fill_in :password, :with => " "
+		fill_in :password_confirmation, :with => " "
+		click_button("Join Chitter")
+		expect(page).to have_content("Username must be between 5 and 30 characters long")
+		expect(page).to have_content("Name must be between 5 and 30 characters long")
+		expect(page).to have_content("Email must be between 5 and 50 characters long")
+	end
+
 end
 
 feature "User signs in and out" do
