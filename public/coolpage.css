@@ -1,10 +1,12 @@
 header {
 	display: block;
-	height: 200px;
-	width: 900px;
+	height: 35%;
+	width: 75%;
 	background-image: url("/images/birdy.jpg");
+	background-repeat: no-repeat;
 	margin-left: auto;
 	margin-right: auto;
+	opacity: 0.7;
 }
 
 h1 {
@@ -15,7 +17,10 @@ h1 {
 	color: white;
 }
 
-body {
-	/*background: #8D4D4D*/
+h2, h3, a, form, .cheeps {
+	color: white;
 }
+
+body {
+	background-color: #56B3AE;
 }

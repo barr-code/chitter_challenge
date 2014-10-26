@@ -120,6 +120,7 @@ DEPENDENCIES
   database_cleaner
   datamapper
   dm-postgres-adapter
+  json
   launchy
   rack-flash3
   rspec

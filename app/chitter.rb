@@ -2,9 +2,9 @@ require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
 require 'dm-timestamps'
-require_relative 'users.rb'
-require_relative 'cheeps.rb'
-require_relative 'tags.rb'
+require_relative 'models/users.rb'
+require_relative 'models/cheeps.rb'
+require_relative 'models/tags.rb'
 require_relative 'datamapper_setup'
 
 enable :sessions

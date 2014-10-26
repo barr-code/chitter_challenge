@@ -6,6 +6,7 @@ gem 'dm-postgres-adapter'
 gem 'bcrypt'
 gem 'database_cleaner'
 gem 'rack-flash3'
+gem 'json'
 
 group :development, :test do 
 	gem 'cucumber-sinatra'
