@@ -1,7 +1,8 @@
 require 'data_mapper'
-require './app/data_mapper_setup'
-require './app/users'
-require './app/cheeps'
+require './app/datamapper_setup'
+require './app/models/users'
+require './app/models/cheeps'
+require './app/models/tags'
 
 task :auto_upgrade do 
 	DataMapper.auto_upgrade!

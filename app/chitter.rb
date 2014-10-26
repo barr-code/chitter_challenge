@@ -18,7 +18,7 @@ end
 
 	get '/' do
 		@cheeps = Cheep.all
-	    erb :index
+		erb :index
 	end
 
 	post '/' do
@@ -45,17 +45,10 @@ end
 	end
 
 	post '/register' do
-		@user = User.create(name: params[:name], email: params[:email],
-			username: params[:username], password: params[:password],
-			password_confirmation: params[:password_confirmation])
-
-		if @user.save
-			session[:user_id] = @user.id
-			redirect to '/'
-		else
-			flash.now[:errors] = @user.errors.full_messages
-			erb :register
-		end
+		@user = User.create(:name => params[:name], :email => params[:email],
+			:username => params[:username], :password => params[:password],
+			:password_confirmation => params[:password_confirmation])
+		puts @user.inspect
 	end
 
 	get '/sessions/new' do 
@@ -66,5 +59,11 @@ end
 		flash[:notice] = "Bye bye!"
 		session[:user_id] = nil
 		redirect to('/')
+	end
+
+	get '/users' do
+		content_type :json
+		users = User.all
+		return users.to_json
 	end
 

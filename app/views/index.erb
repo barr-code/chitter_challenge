@@ -1,26 +1,24 @@
 <% if current_user %>
 	<h2>Welcome, <%= current_user.username %>!</h2>
-
-	<div id="new-cheep">
-	<form action="/cheep" method="post">
+	<div id="new-cheep"> 	<form action="/cheep" method="post">
 		Compose a new Cheep: <input type="text" name="cheep">
-		<input type="submit" value="Cheep!">
-	</form>
-	</div>
+ 		<input type="submit" value="Cheep!">
+ 	</form>
+ 	</div>
 
-<% else %>
+ <% else %>
 
-	<h3>Welcome to Chitter!</h3>
+ 	<h3>Welcome to Chitter!</h3>
 
-<% end %>
+ <% end %>
 
-<% if @cheeps %>
-	<% @cheeps.reverse.each do |cheep| %>
-	<section class="cheeps">
-		<p><%= cheep.user.username %> || <%= cheep.created_at.strftime("%b %d %r") %></p>
-		<p><%= cheep.user.name %> says: </p>
-		<p><%= cheep.content %></p>
-	</section>
-	<% end %>
-<% end %>
+ <% if @cheeps %>
+ 	<% @cheeps.reverse.each do |cheep| %>
+ 	<section class="cheeps">
+ 		<p><%= cheep.user.username %> || <%= cheep.created_at.strftime("%b %d %r") %></p>
+ 		<p><%= cheep.user.name %> says: </p>
+ 		<p><%= cheep.content %></p>
+ 	</section>
+ 	<% end %>
+ <% end %>
 
