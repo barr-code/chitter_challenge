@@ -1,29 +1,65 @@
+<!DOCTYPE html>
+<%= yield %>
+<html>
 <head>
-
+	<title>Chitter</title>
 	<link rel="stylesheet" type="text/css" href="/coolpage.css">
 </head>
 
+<body>
+	<header>
+	</header>
+
+	<a href="#" id="sign_up">Sign up to start Cheeping!</a><br>
+	<a href="#" id="sign_in">Already a user? Sign in!</a>
+
+	<section id="registration">
+		Fill in the following fields to sign up for Chitter!
+		Name: <input id="r_name" type="text"><br>
+		E-mail: <input id="r_email" type="text"><br>
+		Username: <input id="r_username" type="text"><br>
+		Password: <input id="r_password" type="password"><br>
+		Confirm Password: <input id="password_confirmation" type="password"><br>
+		<input type="submit" value="Join Chitter" id="register">
+	</section>
+
+	<section id="signing_in">
+		E-mail: <input type="text" name="email"><br>
+		Password: <input type="password" name="password"><br>
+		<input type="submit" value="Sign In" id="login">
+	</section>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/interface.js"></script>
+</body>
+
+
+<!-- <head>
+
+<link rel="stylesheet" type="text/css" href="/coolpage.css">
+</head>
+
 <header>
-	<h1>Chitter</h1>
+<h1>Chitter</h1>
 </header>
 
-<%= yield %>
+
 
 <% if current_user %>
-	<form action="/sessions" method="post">
-		<input type="hidden" name="_method" value="delete">
-		<input type="submit" value="Sign out">
-	</form>
+<form action="/sessions" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Sign out">
+</form>
 <% end %>
 
 <% if flash[:notice] %>
-	<div id="notice">
-		<%= flash[:notice] %>
-	</div>
+<div id="notice">
+<%= flash[:notice] %>
+</div>
 <% end %>
 
 <% if !current_user %>
-	<a href="/register">Sign up to start Cheeping!</a><br>
-	<a href="/sessions/new">Already a user? Sign in!</a>
+<a href="/register">Sign up to start Cheeping!</a><br>
+<a href="/sessions/new">Already a user? Sign in!</a>
 <% end %>
-
+ -->
