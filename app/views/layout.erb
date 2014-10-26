@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%= yield %>
 <html>
 <head>
 	<title>Chitter</title>
@@ -20,13 +19,13 @@
 		Username: <input name= "username" id="r_username" type="text"><br>
 		Password: <input name="password" id="r_password" type="password"><br>
 		Confirm Password: <input name="password_confirmation" id="password_confirmation" type="password"><br>
-		<input type="submit" value="Join Chitter" id="register">
+		<a href="#" id="register">Join Chitter</a>
 	</form>
 
 	<form id="signing_in">
-		E-mail: <input type="text" name="email"><br>
-		Password: <input type="password" name="password"><br>
-		<input type="submit" value="Sign In" id="login">
+		E-mail: <input type="text" name="email" id="email"><br>
+		Password: <input type="password" name="password" id="password"><br>
+		<a href="#" id="login">Sign In</a>
 	</form>
 
 	<script type="text/javascript" src="js/jquery.js"></script>

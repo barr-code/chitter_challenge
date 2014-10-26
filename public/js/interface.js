@@ -22,6 +22,9 @@ $(document).ready(function(){
 	$('#sign_in').on('click', function(){
 		$('#signing_in').show();
 		$('#login').on('click', function(){
+			var email = $('#email').val();
+			var password = $('#password').val();
+			$.getJSON('/users/' + email + "/" + password, function() { console.log("Got user")});
 			$('#signing_in').hide();
 		});
 	});
